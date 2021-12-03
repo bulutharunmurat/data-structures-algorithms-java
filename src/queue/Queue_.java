@@ -1,6 +1,6 @@
 package queue;
 
-public class Queue {
+public class Queue_ {
 
     private Integer front = 0;
     private Integer rear = -1;
@@ -8,7 +8,7 @@ public class Queue {
     private Integer[] array;
     private Integer count = 0;
 
-    public Queue(Integer capacity) {
+    public Queue_(Integer capacity) {
         this.capacity = capacity;
         this.array = new Integer[capacity];
     }
@@ -53,7 +53,7 @@ public class Queue {
         for (int i = 0; i <= count; i++){
             queue = queue + array[(front + i) % capacity ] + ", ";
         }
-        return "Queue{" +
+        return "Queue_{" +
                 "top=" + rear +
                 ", capacity=" + capacity +
                 ", array=" + queue +

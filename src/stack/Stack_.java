@@ -1,18 +1,18 @@
 package stack;
 
-public class MyStack {
+public class Stack_ {
 
     private Integer top = -1;
     private Integer capacity;
     private Integer[] array;
 
-    public MyStack(Integer capacity) {
+    public Stack_(Integer capacity) {
         this.capacity = capacity;
         this.array = new Integer[capacity];
     }
 
     public void push(Integer variable) throws Exception {
-        if (!isFull() ) {
+        if (!isFull()) {
             top = top + 1;
             array[top] = variable;
         }
@@ -49,15 +49,18 @@ public class MyStack {
     @Override
     public String toString() {
 
-        String stack = "";
+        String stack = "[ ";
 
         for (int i = 0; i <= top; i++){
             stack = stack + array[i] + ", ";
         }
-        return "MyStack{" +
-                "top=" + top +
-                ", capacity=" + capacity +
-                ", array=" + stack +
-                '}';
+         if (top != -1) {
+             stack = stack.substring(0, (stack.length() - 2 )) + " ]";
+         }
+         else {
+             stack = stack + "]";
+         }
+
+         return stack;
     }
 }

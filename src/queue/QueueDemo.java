@@ -1,10 +1,8 @@
 package queue;
 
-import stack.MyStack;
-
 public class QueueDemo {
     public static void main(String[] args) throws Exception {
-        Queue queue = new Queue(5);
+        Queue_ queue = new Queue_(5);
         queue.enqueue(1);
         queue.enqueue(2);
         queue.enqueue(3);
