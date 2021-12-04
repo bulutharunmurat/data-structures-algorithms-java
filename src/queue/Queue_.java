@@ -1,5 +1,7 @@
 package queue;
 
+import java.util.Arrays;
+
 public class Queue_ {
 
     private Integer front = 0;
@@ -21,11 +23,14 @@ public class Queue_ {
         return count == capacity;
     }
 
-    public void enqueue(Integer variable){
+    public void enqueue(Integer variable) throws Exception {
         if (!isFull()){
             count = count + 1;
             rear = (rear + 1) % capacity;
             array[rear] = variable;
+        }
+        else {
+            throw new Exception("Queue is Full!");
         }
     }
 
@@ -34,10 +39,9 @@ public class Queue_ {
             count = count - 1;
             Integer variable = array[front];
             front = (front + 1) % capacity;
-            array[rear] = variable;
             return variable;
         }
-        throw new Exception("Stack is Full");
+        throw new Exception("Queue is Empty!!");
     }
 
     public void clear(){
@@ -47,17 +51,20 @@ public class Queue_ {
 
     @Override
     public String toString() {
+        String queue = "[ ";
 
-        String queue = "";
-
-        for (int i = 0; i <= count; i++){
+        for (int i = 0; i < count; i++){
             queue = queue + array[(front + i) % capacity ] + ", ";
         }
-        return "Queue_{" +
-                "top=" + rear +
-                ", capacity=" + capacity +
-                ", array=" + queue +
-                '}';
+
+        if (count != 0) {
+            queue = queue.substring(0, queue.length()-2) + " ]";
+        }
+        else {
+            queue = queue + " ]";
+        }
+
+        return queue;
     }
 
 }
