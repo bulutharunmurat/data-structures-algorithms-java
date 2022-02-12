@@ -29,7 +29,7 @@ public class LinkedList {
         }
 
         else {
-            addToMiddle(prevNode, node);
+            addBetween(prevNode, node);
         }
     }
 
@@ -71,7 +71,7 @@ public class LinkedList {
         head = node;
     }
 
-    public void addToMiddle(Node prev, Node node){
+    public void addBetween(Node prev, Node node){
         node.next = prev.next;
         prev.next = node;
     }

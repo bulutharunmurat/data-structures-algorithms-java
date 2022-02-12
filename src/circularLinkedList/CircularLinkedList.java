@@ -1,60 +1,52 @@
 package circularLinkedList;
 
-import circularLinkedList.Node;
-
 import java.util.Objects;
 
 public class CircularLinkedList {
 
     Node head;
-    Node tail;
 
     public CircularLinkedList() {
         this.head = null;
     }
 
-    public void add(Integer data, Integer prev){
+    public void add(Integer data, Integer prev) {
         Node node = new Node(data);
 
-        if (head == null){
+        if (head == null) {
             addToEmptyList(node);
-        }
-
-        else {
+        } else {
             Node prevNode = find(prev);
-            addToMiddle(prevNode, node);
-            if (prev == null) {
-                head = node;
-            }
+            addBetween(prevNode, node);
         }
     }
 
-    public void add(Integer data){
+    public void add(Integer data) {
         Node node = new Node(data);
-        if (head == null){
+        if (head == null) {
             addToEmptyList(node);
         }
-        Node prev = findPrev(data);
-        addToMiddle(prev, node);
+        Node prev = find(null);
+        addBetween(prev, node);
+        head = node;
     }
 
-    private Node find(Integer prev) {
+    private Node find(Integer data) {
         Node p = head;
 
-        if (Objects.isNull(prev)) {
-            while (p.next != head){
+        if (Objects.isNull(data)) {
+            while (p.next != head) {
                 p = p.next;
             }
             return p;
         }
 
-        while (p.next != head){
-            if (p.data == prev){
+        while (p.next != head) {
+            if (p.data == data) {
                 return p;
             }
             p = p.next;
         }
-
         return p;
     }
 
@@ -64,79 +56,62 @@ public class CircularLinkedList {
     }
 
 
-    public void addToMiddle(Node prev, Node node){
+    public void addBetween(Node prev, Node node) {
         node.next = prev.next;
         prev.next = node;
     }
 
-    public void remove(Integer data){
+    public void remove(Integer data) {
         Node removeNode = find(data);
 
-        if (removeNode == null){
+        if (removeNode.data != data){
             System.out.println("Node to remove cannot find in a list");
             return;
         }
-        Node prevNode = findPrev(data);
+        Node prevNode = findPrev(removeNode);
 
-        if (removeNode == tail && removeNode == head){
+        if (removeNode == prevNode) {
             removeToEmpty();
-        }
-        else if (removeNode == head){
-            removeHead();
-        }
-        else if (removeNode == tail){
-            removeTail(prevNode);
-        }
-        else {
+        } else {
+            if (removeNode == head) {
+                head = removeNode.next;
+            }
             removeBetween(removeNode, prevNode);
         }
 
     }
 
-    public void removeBetween(Node removeNode, Node prevNode){
+    public void removeBetween(Node removeNode, Node prevNode) {
         prevNode.next = removeNode.next;
     }
 
-    public void removeHead(){
-        head = head.next;
-    }
-
-    public void removeTail(Node prevNode){
-        tail = prevNode;
-        prevNode.next = null;
-    }
-
-    public void removeToEmpty(){
+    public void removeToEmpty() {
         head = null;
-        tail = null;
     }
 
-    private Node findPrev(Integer data) {
-        Node p = head;
-        while (p != null){
-            if (Objects.nonNull(p.next) && (p.next.data == data)){
-                return p;
-            }
+    private Node findPrev(Node selfNode) {
+        Node p = selfNode;
+        while (p.next != selfNode){
             p = p.next;
         }
-        return null;
+        return p;
     }
 
 
     @Override
     public String toString() {
+
+        if (head == null) {
+            return "[ ]";
+        }
+
         String s = "[ ";
         Node p = head;
-        while (p != null){
+
+        while (p.next != head) {
             s = s + p.data + ", ";
             p = p.next;
         }
-        if (head != null){
-            s = s.substring(0, s.length() - 2) + " ]";
-        }
-        else {
-            s = s + " ]";
-        }
-        return s;
+        return s + p.data + " ]";
     }
 }
