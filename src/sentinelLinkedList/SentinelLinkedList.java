@@ -33,8 +33,6 @@ public class SentinelLinkedList {
             return p;
         }
 
-        p = head;
-
         while (p.next != head) {
             if (p.next.data == data) {
                 return p.next;
