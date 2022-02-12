@@ -41,14 +41,14 @@ public class LinkedList {
         addToTail(node);
     }
 
-    private Node find(Integer prev) {
-        if (Objects.isNull(prev)) {
+    private Node find(Integer data) {
+        if (Objects.isNull(data)) {
             return null;
         }
 
         Node p = head;
         while (p != null){
-            if (p.data == prev){
+            if (p.data == data){
                 return p;
             }
             p = p.next;
