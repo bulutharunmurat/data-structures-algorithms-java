@@ -19,5 +19,10 @@ public class BinarySearchTreeTest {
 
         Integer data = binarySearchTree.search(19).data;
         System.out.println(data);
+
+        binarySearchTree.remove(20);
+        binarySearchTree.remove(13);
+        binarySearchTree.remove(24);
+        binarySearchTree.remove(17);
     }
 }
