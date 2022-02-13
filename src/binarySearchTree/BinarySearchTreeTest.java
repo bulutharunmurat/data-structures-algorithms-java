@@ -15,6 +15,9 @@ public class BinarySearchTreeTest {
         binarySearchTree.add(19);
         binarySearchTree.add(22);
         binarySearchTree.add(24);
-        int a = 1;
+        binarySearchTree.add(20);
+
+        Integer data = binarySearchTree.search(19).data;
+        System.out.println(data);
     }
 }

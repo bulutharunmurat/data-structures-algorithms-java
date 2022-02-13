@@ -41,4 +41,18 @@ public class BinarySearchTree {
         }
     }
 
+    public TreeNode search(Integer data) {
+        TreeNode p = root;
+        while (Objects.nonNull(p)){
+            if(p.data > data) {
+                p = p.left;
+            } else if (p.data < data) {
+                p = p.right;
+            } else {
+                return p;
+            }
+        }
+        return null;
+    }
+
 }
