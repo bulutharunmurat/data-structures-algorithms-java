@@ -1,6 +1,10 @@
 package binarySearchTree;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Queue;
 
 public class BinarySearchTree {
 
@@ -113,4 +117,64 @@ public class BinarySearchTree {
         return remNode;
 
     }
+
+    public void printBF() {
+
+        Queue<TreeNode> queue
+                = new LinkedList<>();
+        queue.add(root);
+
+        while (queue.size() != 0) {
+            TreeNode currentNode = queue.poll();
+
+            System.out.printf(currentNode.data + " ");
+            if (Objects.nonNull(currentNode.left)) {
+                queue.add(currentNode.left);
+            }
+            if (Objects.nonNull(currentNode.right)) {
+                queue.add(currentNode.right);
+            }
+        }
+        System.out.println();
+    }
+
+    private void printInOrderRecursive(TreeNode root) {
+        if (Objects.nonNull(root)) {
+            printInOrderRecursive(root.left);
+            System.out.printf(root.data + " ");
+            printInOrderRecursive(root.right);
+        }
+    }
+    public void printInOrder() {
+        printInOrderRecursive(root);
+        System.out.println();
+    }
+
+    private void printPreOrderRecursive(TreeNode root) {
+        if (Objects.nonNull(root)) {
+            System.out.printf(root.data + " ");
+            printPreOrderRecursive(root.left);
+            printPreOrderRecursive(root.right);
+        }
+    }
+    public void printPreOrder() {
+        printPreOrderRecursive(root);
+        System.out.println();
+    }
+
+    private void printPostOrderRecursive(TreeNode root) {
+        if (Objects.nonNull(root)) {
+            printPostOrderRecursive(root.left);
+            printPostOrderRecursive(root.right);
+            System.out.printf(root.data + " ");
+        }
+    }
+    public void printPostOrder() {
+        printPostOrderRecursive(root);
+        System.out.println();
+    }
+
+
+
+
 }
