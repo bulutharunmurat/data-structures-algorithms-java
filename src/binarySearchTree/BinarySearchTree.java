@@ -1,8 +1,6 @@
 package binarySearchTree;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
 
@@ -47,8 +45,8 @@ public class BinarySearchTree {
 
     public TreeNode search(Integer data) {
         TreeNode p = root;
-        while (Objects.nonNull(p)){
-            if(p.data > data) {
+        while (Objects.nonNull(p)) {
+            if (p.data > data) {
                 p = p.left;
             } else if (p.data < data) {
                 p = p.right;
@@ -66,8 +64,8 @@ public class BinarySearchTree {
 
         TreeNode parent = root;
         TreeNode p = root;
-        while (Objects.nonNull(p)){
-            if(p.data > data) {
+        while (Objects.nonNull(p)) {
+            if (p.data > data) {
                 parent = p;
                 p = p.left;
             } else if (p.data < data) {
@@ -102,18 +100,26 @@ public class BinarySearchTree {
                 parent.left = remNode.left;
                 p = parent.left;
 
+                if (Objects.nonNull(p)) {
+                    while (Objects.nonNull(p.right)) {
+                        p = p.right;
+                    }
+                    p.right = remNode.right;
+                }
+
             } else if (remNode == parent.right) {
                 parent.right = remNode.right;
                 p = parent.right;
+
+                if (Objects.nonNull(p)) {
+                    while (Objects.nonNull(p.left)) {
+                        p = p.left;
+                    }
+                    p.left = remNode.left;
+                }
             }
         }
 
-        if (Objects.nonNull(p)) {
-            while (Objects.nonNull(p.right)) {
-                p = p.right;
-            }
-            p.right = remNode.right;
-        }
         return remNode;
 
     }
@@ -145,6 +151,7 @@ public class BinarySearchTree {
             printInOrderRecursive(root.right);
         }
     }
+
     public void printInOrder() {
         printInOrderRecursive(root);
         System.out.println();
@@ -157,6 +164,7 @@ public class BinarySearchTree {
             printPreOrderRecursive(root.right);
         }
     }
+
     public void printPreOrder() {
         printPreOrderRecursive(root);
         System.out.println();
@@ -169,12 +177,9 @@ public class BinarySearchTree {
             System.out.printf(root.data + " ");
         }
     }
+
     public void printPostOrder() {
         printPostOrderRecursive(root);
         System.out.println();
     }
-
-
-
-
 }

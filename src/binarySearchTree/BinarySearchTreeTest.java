@@ -21,7 +21,7 @@ public class BinarySearchTreeTest {
         binarySearchTree.printPreOrder();
         binarySearchTree.printPostOrder();
 
-/*
+
         Integer data = binarySearchTree.search(19).data;
         System.out.println(data);
 
@@ -31,6 +31,6 @@ public class BinarySearchTreeTest {
         binarySearchTree.remove(17);
         binarySearchTree.printBF();
 
- */
+
     }
 }
