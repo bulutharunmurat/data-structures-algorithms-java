@@ -29,6 +29,7 @@ public class BinarySearchTreeTest {
         binarySearchTree.remove(13);
         binarySearchTree.remove(24);
         binarySearchTree.remove(17);
+        binarySearchTree.remove(23);
         binarySearchTree.printBF();
 
 
