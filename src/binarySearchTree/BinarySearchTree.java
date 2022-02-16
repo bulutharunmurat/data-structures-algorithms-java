@@ -96,13 +96,10 @@ public class BinarySearchTree {
             root = remNode.left;
             p = root;
 
-            if (Objects.nonNull(p)) {  // for leaf
-                while (Objects.nonNull(p.right)) {
-                    p = p.right;
-                }
-                p.right = remNode.right;
+            while (Objects.nonNull(p.right)) {
+                p = p.right;
             }
-
+            p.right = remNode.right;
 
         } else {
             if (remNode == parent.left) {
