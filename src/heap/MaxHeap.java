@@ -2,6 +2,7 @@ package heap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MaxHeap {
 
@@ -28,14 +29,51 @@ public class MaxHeap {
           }
      }
 
-     public void swap(List<Integer> alist, Integer firstIndex, Integer secondIndex) {
+     public void remove(Integer data) {
 
+          Integer remIndex = findIndex(data);
+          Integer lastIndex = heap.size() - 1;
+
+          if (Objects.isNull(remIndex)) {
+               System.out.println("list does not contain given data!!");
+               return;
+          }
+
+          swap(heap, remIndex, lastIndex);
+          heap.remove(lastIndex.intValue());
+
+          while (remIndex < lastIndex && 2 * remIndex + 1 < lastIndex) {
+               int leftChild = 2 * remIndex + 1;
+               int rightChild = 2 * remIndex + 2;
+
+               if (heap.get(remIndex) < heap.get(leftChild) || rightChild < lastIndex && heap.get(remIndex) < heap.get(rightChild)) {
+                    if (rightChild < lastIndex && heap.get(leftChild) <= heap.get(rightChild)) {
+                         swap(heap, remIndex, rightChild);
+                         remIndex = rightChild;
+                    } else {
+                         swap(heap, remIndex, leftChild);
+                         remIndex = leftChild;
+                    }
+               }
+          }
+
+     }
+
+     public void swap(List<Integer> alist, Integer firstIndex, Integer secondIndex) {
           Integer firstIndexValue = alist.get(firstIndex);
           Integer secondIndexValue = alist.get(secondIndex);
 
           alist.set(firstIndex, secondIndexValue);
           alist.set(secondIndex, firstIndexValue);
+     }
 
+     public Integer findIndex(Integer data) {
+          for (int i = 0; i < heap.size(); i++) {
+               if (heap.get(i) == data) {
+                    return i;
+               }
+          }
+          return null;
      }
 
 
