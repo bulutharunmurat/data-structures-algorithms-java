@@ -1,5 +1,10 @@
 package heap;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static heap.MaxHeap.heapify;
+
 public class HeapTest {
     public static void main(String[] args) {
 
@@ -41,5 +46,12 @@ public class HeapTest {
         System.out.println(maxHeap.heap);
         maxHeap.remove(12);
         System.out.println(maxHeap.heap);
+
+
+
+        List<Integer> integerList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> heapifiedList = heapify(integerList);
+        System.out.println(heapifiedList);
+
     }
 }

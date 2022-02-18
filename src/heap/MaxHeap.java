@@ -76,5 +76,9 @@ public class MaxHeap {
           return null;
      }
 
-
+     public static List<Integer> heapify(List<Integer> alist) {
+          MaxHeap heap = new MaxHeap();
+          alist.forEach(heap::add);
+          return heap.heap;
+     }
 }
