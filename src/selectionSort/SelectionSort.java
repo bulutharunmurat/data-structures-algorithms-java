@@ -6,7 +6,7 @@ import java.util.List;
 
 public class SelectionSort {
 
-    public List<Integer> sort(List<Integer> aList) {
+    public static List<Integer> sort(List<Integer> aList) {
         for (int i = 0; i < aList.size() - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < aList.size(); j++) {
